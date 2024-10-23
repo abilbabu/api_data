@@ -19,8 +19,17 @@ class Homescreen extends StatelessWidget {
           child: Consumer<HomescreenController>(
             builder: (context, providerObj, child) => providerObj.isLoading
                 ? CircularProgressIndicator()
-                : Text(
-                    context.watch<HomescreenController>().Catfact ?? "No Data"),
+                : Row(
+                    children: [
+                      Text(providerObj.respObj?.length.toString() ?? "No Data"),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                          child: Text(providerObj.respObj?.fact.toString() ??
+                              "No Data")),
+                    ],
+                  ),
           ),
         ),
       ),
